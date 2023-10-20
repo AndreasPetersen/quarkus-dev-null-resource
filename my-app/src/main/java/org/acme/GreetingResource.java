@@ -19,6 +19,8 @@ public class GreetingResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
+        GreetingResource.class.getClassLoader().getResource("openapi.json").getFile();
+
         SwaggerParseResult swaggerParseResult = new OpenAPIV3Parser().readLocation("openapi.json", null, null);
         if (!swaggerParseResult.getMessages().isEmpty()) {
             throw new IllegalArgumentException(String.join(", ", swaggerParseResult.getMessages()));
